@@ -1,20 +1,117 @@
 package Game;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 public class Board {
     Tile tile[][] = new Tile[9][9];
-    int x = 0;
-    int y = 0;
-    int[] possibleNumbetrs = getPossibleNumbers();
+    ArrayList<EmptySpaces> emptySpacesArrayList = new ArrayList<EmptySpaces>();
 
+    public void fillTileWithInputData() {
+        int data[][] = new InputData().getData();
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < data[i].length; j++) {
+                tile[i][j] = new Tile(data[i][j]);
+            }
+        }
+    }
+
+    public void printArray() {
+        System.out.println("|----------------------|");
+        for (int i = 0; i < tile.length; i++) {
+            if (i % 3 == 0 && i != 0) {
+                System.out.println("|-------|-------|------|");
+            }
+            for (int j = 0; j < tile[i].length; j++) {
+                if (j % 3 == 0) {
+                    System.out.print("| ");
+                }
+                System.out.print(tile[i][j].getValue() + " ");
+            }
+            System.out.println();
+        }
+        System.out.println("|----------------------|");
+    }
+
+    public void findEmtySpace() {
+        for (int i = 0; i < tile.length; i++) {
+            for (int j = 0; j < tile[i].length; j++) {
+                if (tile[i][j].getValue() == 0) {
+                    emptySpacesArrayList.add(new EmptySpaces(i, j));
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+    public void checkRow(int y) {
+        for (int i = 0; i < tile.length; i++) {
+            tile[y][i].deleteRepeatingNum(tile[y][i].getValue());
+        }
+    }
+
+
+    public int[] checkColum() {
+        for (int i = 0; i < tile.length; i++) {
+            for (int j = 0; j < possibleNumbetrs.length; j++) {
+                if (possibleNumbetrs[j] == tile[i][x].getValue()) {
+                    possibleNumbetrs = removeTheElement(possibleNumbetrs, j);
+                }
+            }
+        }
+        return possibleNumbetrs;
+    }
+
+    public void checkSquare() {
+        for (int i = findCornerForSquare(y); i < findCornerForSquare(y) + 3; i++) {
+            for (int j = findCornerForSquare(x); j < findCornerForSquare(x) + 3; j++) {
+                for (int k = 0; k < possibleNumbetrs.length; k++) {
+                    if (possibleNumbetrs[k] == tile[j][i].getValue()) {
+                        possibleNumbetrs = removeTheElement(possibleNumbetrs, k);
+                    }
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+    public int findCornerForSquare(int axis) {
+        if (axis > -1 && axis < 3) {
+            return 0;
+        }
+        if (axis > 2 && axis < 6) {
+            return 3;
+        }
+        return 6;
+    }
+
+
+
+
+
+
+
+
+
+/*
     public void setPossibleNumbetrs(int[] possibleNumbetrs) {
         this.possibleNumbetrs = possibleNumbetrs;
     }
 
-    ArrayList<EmptySpaces> emptySpacesArrayList = new ArrayList<EmptySpaces>();
 
-    public int[] getPossibleNumbers() {
-        return new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9};
-    }
+
 
     public void fillTile() {
         Random rnd = new Random();
@@ -62,7 +159,7 @@ public class Board {
             }
             return false;
         }
-    */
+
     public void findEmtySpace() {
         for (int i = 0; i < tile.length; i++) {
             for (int j = 0; j < tile[i].length; j++) {
@@ -110,7 +207,6 @@ public class Board {
         }
         return false;
     }
-
 
     public int[] checkRow() {
         for (int i = 0; i < tile.length; i++) {
@@ -201,4 +297,5 @@ public class Board {
         }
         return true;
     }
+    */
 }

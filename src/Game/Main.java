@@ -6,14 +6,15 @@ public class Main {
 
 
         board.fillTileWithInputData();
-        //board.fillTile();
-
 
         board.findEmtySpace();
-        board.printArray();
-        board.tryFillBoard();
-        board.printArray();
 
+
+        for (int i=0; i<10;i++) {
+            board.printArray();
+            board.tryFillBoard();
+            board.printArray();
+        }
 
 
     }

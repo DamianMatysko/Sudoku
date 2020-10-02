@@ -2,7 +2,7 @@ package Game;
 
 public class Tile {
     int value;
-    int[] possibleNumbetrs = getPossibleNumbers();
+    int[] possibleNumbers={1, 2, 3, 4, 5, 6, 7, 8, 9};
     boolean isFilled;
 
     public int getValue() {
@@ -14,29 +14,28 @@ public class Tile {
     }
 
     public Tile(int value) {
-        if (value > 0 && value < 10) {
+
+        if (value >= 0 && value < 10) {
             this.value = value;
 
         } else {
             System.out.println("Wrong input!!!");
         }
-        if (value == 0) {
-            possibleNumbetrs=null;
-            isFilled = false;
-        } else {
-            isFilled = true;
+
+    }
+
+    public void deleteRepeatingNum(int value) {
+        if (value==0){
+            return;
         }
-    }
+        for (int k = 0; k < this.possibleNumbers.length; k++) {
 
-    public int[] getPossibleNumbers() {
-        return new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9};
-    }
-
-    public int[] deleteRepeatingNum(int value) {
-        for (int k = 0; k < possibleNumbetrs.length; k++) {
-            if (possibleNumbetrs[k] == value) {
-                possibleNumbetrs = removeTheElement(possibleNumbetrs, k);
+            if (possibleNumbers[k] == value) {
+                possibleNumbers = removeTheElement(possibleNumbers, k);
             }
+        }
+        if (possibleNumbers.length==1){
+            this.value= possibleNumbers[0];
         }
     }
     public static int[] removeTheElement(int[] arr, int index) {
@@ -53,7 +52,12 @@ public class Tile {
         return anotherArray;
     }
 
-
+    public void printPossibleNumbers() {
+        for (int i = 0; i < possibleNumbers.length; i++) {
+            System.out.print(possibleNumbers[i]);
+        }
+        System.out.println();
+    }
 
 
 }

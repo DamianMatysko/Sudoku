@@ -44,19 +44,20 @@ public class Board {
     }
 
 
-    public void checkRow(EmptySpaces emptySpace) {
+    public void checkColum(EmptySpaces emptySpace) {
         for (int i = 0; i < tile.length; i++) {
-            tile[emptySpace.getY()][emptySpace.getX()].deleteRepeatingNum(tile[emptySpace.getY()][i].getValue());
-           // System.out.println(emptySpace.getY()+" "+i);
+            tile[emptySpace.getX()][emptySpace.getY()].deleteRepeatingNum(tile[i][emptySpace.getY()].getValue());
+            //System.out.println(tile[i][emptySpace.getY()].getValue());
         }
+
     }
 
 
-    public void checkColum(EmptySpaces emptySpace) {
+    public void checkRow(EmptySpaces emptySpace) {
         for (int i = 0; i < tile.length; i++) {
-            tile[emptySpace.getY()][emptySpace.getX()].deleteRepeatingNum(tile[i][emptySpace.getX()].getValue());
+            tile[emptySpace.getX()][emptySpace.getY()].deleteRepeatingNum(tile[emptySpace.getX()][i].getValue());
         }
-
+        //tile[emptySpace.getX()][emptySpace.getY()].printPossibleNumbers();
     }
 
     public void checkSquare(EmptySpaces emptySpace) {
@@ -82,7 +83,7 @@ public class Board {
             checkColum(emptySpacesArrayList.get(i));
             checkRow(emptySpacesArrayList.get(i));
             checkSquare(emptySpacesArrayList.get(i));
-            tile[emptySpacesArrayList.get(i).getY()][emptySpacesArrayList.get(i).getX()].printPossibleNumbers();
+           // tile[emptySpacesArrayList.get(i).getX()][emptySpacesArrayList.get(i).getY()].printPossibleNumbers();
         }
 
     }

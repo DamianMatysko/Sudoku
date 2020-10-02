@@ -3,7 +3,6 @@ package Game;
 public class Tile {
     int value;
     int[] possibleNumbers={1, 2, 3, 4, 5, 6, 7, 8, 9};
-    boolean isFilled;
 
     public int getValue() {
         return value;
@@ -25,9 +24,7 @@ public class Tile {
     }
 
     public void deleteRepeatingNum(int value) {
-        if (value==0){
-            return;
-        }
+
         for (int k = 0; k < this.possibleNumbers.length; k++) {
 
             if (possibleNumbers[k] == value) {

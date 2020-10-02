@@ -10,7 +10,7 @@ public class Main {
         board.findEmtySpace();
 
 
-        for (int i=0; i<10;i++) {
+        for (int i=0; i<20;i++) {
             board.printArray();
             board.tryFillBoard();
             board.printArray();
